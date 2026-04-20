@@ -32,6 +32,10 @@ def add_entry():
     pangolin_logs.append({"id": new_id, "location": loc, "weight": wgt_float, "date": dt})
 
     return redirect(url_for('index'))
+def delete_entry(item_id):
+    global pangolin_logs
+    pangolin_logs = [item for item in pangolin_logs if item['id'] != item_id]
+    return redirect(url_for('index'))
 def home():
     return '''
         <h1>Welcome to the edge of Pangolins</h1>
