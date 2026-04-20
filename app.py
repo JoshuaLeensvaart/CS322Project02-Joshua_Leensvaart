@@ -9,7 +9,7 @@ pangolin_logs = [
 def index():
     return render_template('index.html', logs=pangolin_logs)
 
-
+@app.route('/add', methods=['POST'])
 def add_entry():
     loc = request.form.get("loc").strip()
     wgt = request.form.get("wgt").strip()
@@ -32,6 +32,7 @@ def add_entry():
     pangolin_logs.append({"id": new_id, "location": loc, "weight": wgt_float, "date": dt})
 
     return redirect(url_for('index'))
+@app.route('/delete/<int:item_id>')
 def delete_entry(item_id):
     global pangolin_logs
     pangolin_logs = [item for item in pangolin_logs if item['id'] != item_id]
