@@ -23,11 +23,10 @@ def add_entry():
         flash("Date is required.")
         return redirect(url_for('index'))
     try:
-        # Convert string to date object for comparison
         input_date = datetime.datetime.strptime(dt, '%Y-%m-%d').date()
         today = datetime.date.today()
 
-        if (input_date > today):
+        if input_date > today:
             flash("Date Error: Cannot log a future sighting.")
             return redirect(url_for('index'))
     except ValueError:
