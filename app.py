@@ -21,8 +21,8 @@ def add_entry():
 
     try:
         wgt_float = float(wgt)
-        if not (1.0 <= wgt_float <= 45.0):
-            flash("Weight must be between 1kg and 45kg.")
+        if not (0.1 <= wgt_float <= 45.0):
+            flash("Weight must be between 0.1kg and 45kg.")
             return redirect(url_for('index'))
     except ValueError:
         flash("Weight must be a decimal number.")
@@ -37,13 +37,4 @@ def delete_entry(item_id):
     global pangolin_logs
     pangolin_logs = [item for item in pangolin_logs if item['id'] != item_id]
     return redirect(url_for('index'))
-def home():
-    return '''
-        <h1>Welcome to the edge of Pangolins</h1>
-        <p>Click below to see something cool:(Spoiler alert: its pangolins)</p>
-        <a href="/lab09">See Pangolins!</a>
-    '''
-
-@app.route("/lab09")
-def pangolins():
-    return render_template("lab09.html")
+app.run()
