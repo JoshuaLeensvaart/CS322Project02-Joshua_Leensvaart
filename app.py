@@ -1,3 +1,4 @@
+import datetime
 import re
 from flask import Flask, render_template, request, flash, redirect, url_for
 
@@ -17,6 +18,9 @@ def add_entry():
 
     if not re.match(r"^[a-zA-Z\s]{3,30}$", loc):
         flash("Location must be 3-30 letters only.")
+        return redirect(url_for('index'))
+    if not dt:
+        flash("Date is required.")
         return redirect(url_for('index'))
 
     try:
